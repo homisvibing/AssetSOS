@@ -65,13 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dataToRender.forEach(spec => {
             const card = document.createElement('div');
-            card.classList.add('bg-white', 'p-6', 'rounded-xl', 'shadow-md', 'hover:shadow-lg', 'transition-shadow');
+            // Add a class to identify clickable cards
+            card.classList.add('spec-card', 'bg-white', 'p-6', 'rounded-xl', 'shadow-md', 'hover:shadow-lg', 'transition-shadow', 'cursor-pointer');
+            // Store the 'Use of purposes' for navigation
+            card.dataset.specPurpose = spec["Use of purposes"];
 
             let dimensions = spec["Recommended Dimensions (Pixels)"] || "N/A";
             let orientation = spec["Orientation"] && spec["Orientation"] !== "N/A" ? spec["Orientation"] + ", " : "";
             let aspectRatio = spec["Aspect Ratio"] && spec["Aspect Ratio"] !== "N/A" ? spec["Aspect Ratio"] + " aspect ratio" : "";
             let lastUpdated = spec["Last Updated Date"] || "N/A";
-            // let mediaType = spec["Media Type"] || "N/A"; // Not directly used in card display, but useful for filtering
 
             let cardTitle = spec["Use of purposes"] || "Unknown Spec";
             if (spec["Media Type"] && spec["Media Type"] !== "N/A" && !cardTitle.toLowerCase().includes(spec["Media Type"].toLowerCase())) {
@@ -101,6 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="text-gray-500 text-xs mt-2">Last Updated: ${lastUpdated}</p>
             `;
             specCardsContainer.appendChild(card);
+
+            // Add click event listener to each card
+            card.addEventListener('click', () => {
+                const purpose = encodeURIComponent(spec["Use of purposes"]);
+                const dataType = currentData === digitalSpecsData ? 'digital' : 'offline';
+                window.location.href = `detail.html?purpose=${purpose}&type=${dataType}`;
+            });
         });
     }
 
