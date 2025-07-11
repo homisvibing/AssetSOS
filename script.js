@@ -123,16 +123,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const offlineToggleButton = document.querySelector('.filter-options-section .flex button:last-child');
 
     // --- Populate Filter Dropdowns ---
-    function populateFilterDropdown(selectElement, data, key) {
+    // This function is now more generic and handles different keys
+    function populateFilterDropdown(selectElement, values) {
         selectElement.innerHTML = '<option value="">All</option>'; // Clear existing options
-        const uniqueValues = [...new Set(data.map(item => item[key]).filter(value => value && value !== "N/A"))].sort();
-        uniqueValues.forEach(value => {
+        values.forEach(value => {
             const option = document.createElement('option');
             option.value = value;
             option.textContent = value;
             selectElement.appendChild(option);
         });
     }
+
+    // --- Extract unique platforms ---
+    function getUniquePlatforms(data) {
+        const platforms = new Set();
+        data.forEach(item => {
+            const purpose = item["Use of purposes"];
+            if (purpose && purpose !== "N/A") {
+                // Extract the main platform name (e.g., "Facebook", "Instagram", "LinkedIn")
+                const platformMatch = purpose.match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn)/);
+                if (platformMatch && platformMatch[1]) {
+                    platforms.add(platformMatch[1]);
+                }
+            }
+        });
+        return Array.from(platforms).sort();
+    }
+
+    // --- Extract unique asset types based on selected platform ---
+    function getUniqueAssetTypes(data, selectedPlatform) {
+        const assetTypes = new Set();
+        data.forEach(item => {
+            const purpose = item["Use of purposes"];
+            if (purpose && purpose !== "N/A") {
+                const platformMatch = purpose.match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn)/);
+                if (selectedPlatform === "" || (platformMatch && platformMatch[1] === selectedPlatform)) {
+                    assetTypes.add(purpose); // Add the full "Use of purposes" as an asset type
+                }
+            }
+        });
+        return Array.from(assetTypes).sort();
+    }
+
 
     // --- Combined Filtering Function ---
     function applyFilters() {
@@ -149,13 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 (spec["Important notes"] && spec["Important notes"].toLowerCase().includes(searchTerm))
             );
 
-            // Platform/Category filter: checks if 'Use of purposes' contains the selected platform
-            const matchesPlatform = selectedPlatform === "" ||
-                                    (spec["Use of purposes"] && spec["Use of purposes"].toLowerCase().includes(selectedPlatform));
+            // Platform filter: checks if 'Use of purposes' starts with the selected platform
+            const specPlatform = spec["Use of purposes"] ? spec["Use of purposes"].split(' ')[0].toLowerCase() : '';
+            const matchesPlatform = selectedPlatform === "" || specPlatform === selectedPlatform;
 
-            // Asset Type filter: checks if 'Use of purposes' contains the selected asset type
+
+            // Asset Type filter: exact match for 'Use of purposes'
             const matchesAssetType = selectedAssetType === "" ||
-                                     (spec["Use of purposes"] && spec["Use of purposes"].toLowerCase().includes(selectedAssetType));
+                                     (spec["Use of purposes"] && spec["Use of purposes"].toLowerCase() === selectedAssetType);
 
             // Media Type filter: exact match for 'Media Type'
             const matchesMediaType = selectedMediaType === "" ||
@@ -175,7 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    platformSelect.addEventListener('change', applyFilters);
+    // Event listener for Platform select (to update Asset Type)
+    platformSelect.addEventListener('change', () => {
+        const selectedPlatform = platformSelect.value;
+        const assetTypes = getUniqueAssetTypes(currentData, selectedPlatform);
+        populateFilterDropdown(assetTypeSelect, assetTypes);
+        applyFilters(); // Apply filters after asset type dropdown is updated
+    });
+
     assetTypeSelect.addEventListener('change', applyFilters);
     mediaTypeSelect.addEventListener('change', applyFilters);
 
@@ -187,9 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
         offlineToggleButton.classList.add('bg-gray-200', 'text-gray-800');
 
         currentData = digitalSpecsData; // Set active data to digital
-        populateFilterDropdown(platformSelect, currentData, "Use of purposes");
-        populateFilterDropdown(mediaTypeSelect, currentData, "Media Type");
-        populateFilterDropdown(assetTypeSelect, currentData, "Use of purposes"); // Populate asset type with all 'Use of purposes' for now
+        populateFilterDropdown(platformSelect, getUniquePlatforms(currentData));
+        populateFilterDropdown(mediaTypeSelect, [...new Set(currentData.map(item => item["Media Type"]).filter(value => value && value !== "N/A"))].sort());
+        populateFilterDropdown(assetTypeSelect, getUniqueAssetTypes(currentData, platformSelect.value)); // Repopulate asset types based on currently selected platform
 
         applyFilters(); // Re-apply filters with new data source
     });
@@ -207,20 +247,15 @@ document.addEventListener('DOMContentLoaded', () => {
             platformSelect.innerHTML = '<option value="">All</option>';
             assetTypeSelect.innerHTML = '<option value="">All</option>';
             mediaTypeSelect.innerHTML = '<option value="">All</option>';
-            // You might want to disable them:
-            // platformSelect.disabled = true;
-            // assetTypeSelect.disabled = true;
-            // mediaTypeSelect.disabled = true;
         } else {
-            populateFilterDropdown(platformSelect, currentData, "Use of purposes");
-            populateFilterDropdown(mediaTypeSelect, currentData, "Media Type");
-            populateFilterDropdown(assetTypeSelect, currentData, "Use of purposes"); // Populate asset type for offline data
+            populateFilterDropdown(platformSelect, getUniquePlatforms(currentData));
+            populateFilterDropdown(mediaTypeSelect, [...new Set(currentData.map(item => item["Media Type"]).filter(value => value && value !== "N/A"))].sort());
+            populateFilterDropdown(assetTypeSelect, getUniqueAssetTypes(currentData, platformSelect.value)); // Repopulate asset types for offline data
             applyFilters(); // Re-apply filters with new data source
         }
     });
 
     // --- Initial Data Fetch and Setup ---
-    // Use Promise.all to fetch both digital and offline data concurrently
     Promise.all([
         fetch('digital_specs.json').then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for digital_specs.json`);
@@ -236,9 +271,12 @@ document.addEventListener('DOMContentLoaded', () => {
         offlineSpecsData = offlineData;
         currentData = digitalSpecsData; // Default to digital data on load
 
-        populateFilterDropdown(platformSelect, currentData, "Use of purposes");
-        populateFilterDropdown(mediaTypeSelect, currentData, "Media Type");
-        populateFilterDropdown(assetTypeSelect, currentData, "Use of purposes");
+        // Populate initial platform and media type dropdowns
+        populateFilterDropdown(platformSelect, getUniquePlatforms(currentData));
+        populateFilterDropdown(mediaTypeSelect, [...new Set(currentData.map(item => item["Media Type"]).filter(value => value && value !== "N/A"))].sort());
+        // Populate initial asset type dropdown based on "All" platform
+        populateFilterDropdown(assetTypeSelect, getUniqueAssetTypes(currentData, platformSelect.value));
+
         renderSpecCards(currentData); // Initial render of digital specs
     })
     .catch(error => {
