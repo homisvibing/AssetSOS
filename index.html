@@ -64,23 +64,63 @@
 
         /* Mobile Navigation Menu */
         .mobile-nav-menu {
+            position: fixed; /* Ensure it's fixed */
+            top: 0;
+            right: -100%; /* Start off-screen to the right */
+            width: 70%; /* Adjust as needed for mobile screen size */
+            max-width: 300px; /* Max width for larger tablets in portrait */
+            height: 100%;
             background-color: #183B4E; /* Dark Blue/Teal for mobile menu */
             box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+            z-index: 30; /* Above overlay */
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+        .mobile-nav-menu.active {
+            right: 0; /* Slide into view */
         }
         .mobile-nav-menu a {
+            display: block;
+            padding: 0.75rem 0;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
             color: #F3F3E0; /* Off-white links */
             border-bottom: 1px solid rgba(243, 243, 224, 0.1); /* Subtle divider */
+            transition: color 0.2s ease;
         }
         .mobile-nav-menu a:hover {
             color: #DDA853; /* Golden accent on hover */
         }
+        .mobile-nav-menu a:last-child {
+            border-bottom: none;
+        }
         .mobile-nav-menu .close-btn {
+            align-self: flex-end; /* Push to top right */
+            margin-bottom: 1rem;
+            padding: 0.5rem;
             background-color: #27548A; /* Medium Blue for close button */
+            border-radius: 9999px; /* rounded-full */
             color: #F3F3E0;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
         .mobile-nav-menu .close-btn:hover {
             background-color: #DDA853; /* Golden on hover */
             color: #183B4E; /* Dark text on golden */
+        }
+
+        /* General Interactive Element Enhancements (beyond basic Tailwind) */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         /* Hero Section */
@@ -109,6 +149,7 @@
             color: #183B4E; /* Dark text on golden */
             padding: 0.75rem 1.25rem; /* Adjust padding */
             font-weight: 600;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
         }
         .hero-section button:hover {
             background-color: #F3F3E0; /* Off-white on hover */
@@ -221,12 +262,40 @@
 
         /* Feedback Modal Styles */
         .feedback-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.8); /* Even darker overlay */
+            z-index: 40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .feedback-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         .feedback-modal-content {
             background-color: #27548A; /* Medium Blue for modal background */
             color: #F3F3E0; /* Off-white text */
+            padding: 2rem;
+            border-radius: 0.75rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
+            width: 90%;
+            max-width: 500px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            position: relative;
+        }
+        .feedback-modal-overlay.active .feedback-modal-content {
+            transform: translateY(0);
+            opacity: 1;
         }
         .feedback-modal-content h2 {
             color: #DDA853; /* Golden heading */
@@ -269,7 +338,7 @@
     <header class="py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
         <div class="flex items-center">
             <!-- Website Name/Logo -->
-            <a href="/" class="text-2xl font-bold hover:text-blue-800 transition-colors">
+            <a href="index.html" class="text-2xl font-bold hover:text-blue-800 transition-colors">
                 <span class="hidden sm:inline">AssetSOS</span>
                 <span class="sm:hidden">A.S.</span> <!-- Abbreviation for mobile -->
             </a>
@@ -279,8 +348,8 @@
 
         <!-- Global Navigation (Hamburger menu for mobile, horizontal for desktop) -->
         <nav class="hidden md:flex space-x-6">
-            <a href="#" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
-            <a href="#" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
+            <a href="index.html" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
+            <a href="index.html" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
             <a href="#" class="hover:text-blue-700 font-medium transition-colors">About Us</a>
         </nav>
 
