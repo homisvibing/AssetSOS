@@ -9,17 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /*
-            Consolidated Homepage CSS Styling for AssetSOS
+            Consolidated Homepage CSS Styling for AssetSOS - Dark Mode Theme
             This CSS complements the Tailwind CSS framework.
             It provides custom styles for elements not fully covered by Tailwind,
-            and ensures responsiveness and an app-like feel.
+            and ensures responsiveness and an app-like feel with the new color palette.
         */
 
-        /* Base Styles */
+        /* Base Styles - Dark Mode */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Light background for a minimalist feel */
-            color: #333;
+            background-color: #183B4E; /* Dark Blue/Teal background */
+            color: #F3F3E0; /* Lightest Cream for default text */
         }
 
         /* Basic styling for interactive elements to make them rounded */
@@ -27,190 +27,265 @@
         .rounded-xl { border-radius: 0.75rem; }
         .rounded-full { border-radius: 9999px; }
 
-        /* Mobile Navigation Overlay (initially hidden) */
+        /* Header Specifics */
+        header {
+            background-color: #27548A; /* Medium Blue for header */
+            color: #F3F3E0; /* Lightest Cream text */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+        }
+        header a {
+            color: #DDA853; /* Golden accent for main title */
+        }
+        header a:hover {
+            color: #F3F3E0; /* Hover to off-white */
+        }
+        header p.text-gray-600 { /* Tagline */
+            color: #F3F3E0; /* Ensure tagline is visible */
+        }
+        header nav a {
+            color: #F3F3E0; /* Nav links off-white */
+            font-weight: 400; /* Slightly lighter weight for nav */
+        }
+        header nav a:hover {
+            color: #DDA853; /* Golden accent on hover */
+        }
+        header button.md\:hidden { /* Hamburger icon */
+            color: #F3F3E0;
+            background-color: rgba(243, 243, 224, 0.1); /* Subtle background */
+        }
+        header button.md\:hidden:hover {
+            background-color: rgba(243, 243, 224, 0.2);
+        }
+
+        /* Mobile Navigation Overlay */
         .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-            z-index: 20; /* Above header, below mobile menu */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
         }
 
-        /* Mobile Navigation Menu (slide-out from right) */
+        /* Mobile Navigation Menu */
         .mobile-nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%; /* Start off-screen to the right */
-            width: 70%; /* Adjust as needed for mobile screen size */
-            max-width: 300px; /* Max width for larger tablets in portrait */
-            height: 100%;
-            background-color: #ffffff;
-            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 30; /* Above overlay */
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
+            background-color: #183B4E; /* Dark Blue/Teal for mobile menu */
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
         }
-
-        /* State when mobile menu is active (toggled by JS) */
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-menu.active {
-            right: 0; /* Slide into view */
-        }
-
-        /* Styling for links within the mobile navigation menu */
         .mobile-nav-menu a {
-            display: block;
-            padding: 0.75rem 0;
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 600; /* font-semibold */
-            color: #333;
-            border-bottom: 1px solid #eee;
-            transition: color 0.2s ease;
+            color: #F3F3E0; /* Off-white links */
+            border-bottom: 1px solid rgba(243, 243, 224, 0.1); /* Subtle divider */
         }
-
         .mobile-nav-menu a:hover {
-            color: #2563eb; /* blue-600 */
+            color: #DDA853; /* Golden accent on hover */
         }
-
-        .mobile-nav-menu a:last-child {
-            border-bottom: none;
-        }
-
-        /* Close button for mobile menu */
         .mobile-nav-menu .close-btn {
-            align-self: flex-end; /* Push to top right */
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            background-color: #f0f0f0;
-            border-radius: 9999px; /* rounded-full */
-            color: #555;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            background-color: #27548A; /* Medium Blue for close button */
+            color: #F3F3E0;
         }
-
         .mobile-nav-menu .close-btn:hover {
-            background-color: #e0e0e0;
-            color: #333;
+            background-color: #DDA853; /* Golden on hover */
+            color: #183B4E; /* Dark text on golden */
         }
 
-        /* General Interactive Element Enhancements (beyond basic Tailwind) */
-        /* Adding subtle hover effects or transitions to elements for an "app-like feel". */
-        /* Many are already covered by Tailwind's hover: and transition- classes. */
-
-        /* Example: Enhancing the search button's active state */
-        .max-w-xl button:active {
-            transform: translateY(1px); /* Slight press effect */
+        /* Hero Section */
+        .hero-section h1 {
+            color: #F3F3E0; /* Off-white for main heading */
         }
-
-        /* Example: Enhancing filter buttons' active state */
-        .filter-options-section button:active {
+        .hero-section p {
+            color: #F3F3E0; /* Off-white for subheading */
+            opacity: 0.8; /* Slightly less prominent */
+        }
+        .hero-section input[type="text"] {
+            background-color: #27548A; /* Medium Blue for input background */
+            border-color: #183B4E; /* Dark Blue/Teal border */
+            color: #F3F3E0; /* Light text in input */
+            padding: 0.75rem 1rem; /* Adjust padding */
+        }
+        .hero-section input[type="text"]::placeholder {
+            color: rgba(243, 243, 224, 0.6); /* Lighter placeholder text */
+        }
+        .hero-section input[type="text"]:focus {
+            border-color: #DDA853; /* Golden focus ring */
+            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5); /* Golden glow */
+        }
+        .hero-section button {
+            background-color: #DDA853; /* Golden for search button */
+            color: #183B4E; /* Dark text on golden */
+            padding: 0.75rem 1.25rem; /* Adjust padding */
+            font-weight: 600;
+        }
+        .hero-section button:hover {
+            background-color: #F3F3E0; /* Off-white on hover */
+            color: #183B4E; /* Dark text on hover */
+        }
+        .hero-section button:active {
             transform: translateY(1px);
         }
 
-        /* Accessibility (SR-Only for screen readers) */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
+        /* Filter Options Section */
+        .filter-options-section {
+            background-color: #27548A; /* Medium Blue for filter section */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+        }
+        .filter-options-section h2 {
+            color: #F3F3E0; /* Off-white heading */
+        }
+        .filter-options-section button {
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+            font-weight: 600;
+        }
+        .filter-options-section button:first-child { /* Digital button */
+            background-color: #DDA853; /* Golden when active */
+            color: #183B4E; /* Dark text */
+        }
+        .filter-options-section button:first-child.bg-gray-200 { /* Digital button inactive */
+            background-color: #183B4E; /* Dark Blue/Teal when inactive */
+            color: #F3F3E0; /* Off-white text */
+        }
+        .filter-options-section button:last-child { /* Offline button */
+            background-color: #183B4E; /* Dark Blue/Teal when inactive */
+            color: #F3F3E0; /* Off-white text */
+        }
+        .filter-options-section button:last-child.bg-blue-600 { /* Offline button active */
+            background-color: #DDA853; /* Golden when active */
+            color: #183B4E; /* Dark text */
+        }
+        .filter-options-section button:hover:not(.bg-blue-600, .bg-gray-200) {
+            background-color: rgba(221, 168, 83, 0.8); /* Slightly darker golden on hover */
+        }
+        .filter-options-section label {
+            color: #F3F3E0; /* Off-white labels */
+            opacity: 0.9;
+        }
+        .filter-options-section select {
+            background-color: #183B4E; /* Dark Blue/Teal for select backgrounds */
+            border-color: #27548A; /* Medium Blue border */
+            color: #F3F3E0; /* Light text in selects */
+            padding: 0.75rem;
+        }
+        .filter-options-section select:focus {
+            border-color: #DDA853; /* Golden focus ring */
+            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5);
+        }
+
+        /* Spec Cards */
+        .spec-card {
+            background-color: #27548A; /* Medium Blue for card backgrounds */
+            color: #F3F3E0; /* Off-white text */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .spec-card:hover {
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+        }
+        .spec-card h3 {
+            color: #DDA853; /* Golden for card titles */
+        }
+        .spec-card p {
+            color: #F3F3E0; /* Off-white for card text */
+            opacity: 0.9;
+        }
+        .spec-card p.text-gray-600 { /* Small text like orientation/aspect ratio */
+            color: rgba(243, 243, 224, 0.7); /* Slightly muted off-white */
+        }
+        .spec-card p.text-gray-500 { /* Last updated text */
+            color: rgba(243, 243, 224, 0.6); /* Even more muted */
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #27548A; /* Medium Blue for footer */
+            color: #F3F3E0; /* Off-white text */
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4); /* Shadow above footer */
+        }
+        footer a {
+            color: #DDA853; /* Golden links */
+        }
+        footer a:hover {
+            color: #F3F3E0; /* Off-white on hover */
+        }
+
+        /* Floating Suggestion Box Button */
+        #suggestion-box-btn {
+            background-color: #DDA853; /* Golden button */
+            color: #183B4E; /* Dark text/icon */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #suggestion-box-btn:hover {
+            background-color: #F3F3E0; /* Off-white on hover */
+            color: #183B4E; /* Dark text/icon */
+            transform: translateY(-3px); /* Slight lift */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+        #suggestion-box-btn:active {
+            transform: translateY(0);
         }
 
         /* Feedback Modal Styles */
         .feedback-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
-            z-index: 40; /* Above mobile menu */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.8); /* Even darker overlay */
         }
-
-        .feedback-modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         .feedback-modal-content {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 500px;
-            transform: translateY(20px); /* Start slightly below center */
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-            position: relative; /* For positioning the close button */
+            background-color: #27548A; /* Medium Blue for modal background */
+            color: #F3F3E0; /* Off-white text */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
         }
-
-        .feedback-modal-overlay.active .feedback-modal-content {
-            transform: translateY(0); /* Slide into center */
-            opacity: 1;
+        .feedback-modal-content h2 {
+            color: #DDA853; /* Golden heading */
         }
-
+        .feedback-modal-content label {
+            color: #F3F3E0; /* Off-white labels */
+        }
+        .feedback-modal-content input,
+        .feedback-modal-content textarea {
+            background-color: #183B4E; /* Dark Blue/Teal for input fields */
+            border-color: #27548A; /* Medium Blue border */
+            color: #F3F3E0; /* Light text in inputs */
+        }
+        .feedback-modal-content input:focus,
+        .feedback-modal-content textarea:focus {
+            border-color: #DDA853; /* Golden focus ring */
+            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5);
+        }
+        .feedback-modal-content button[type="submit"] {
+            background-color: #DDA853; /* Golden submit button */
+            color: #183B4E; /* Dark text */
+        }
+        .feedback-modal-content button[type="submit"]:hover {
+            background-color: #F3F3E0; /* Off-white on hover */
+            color: #183B4E; /* Dark text */
+        }
         .feedback-modal-content .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem;
-            background-color: #f0f0f0;
-            border-radius: 9999px;
-            color: #555;
-            transition: background-color 0.2s ease, color 0.2s ease;
-            cursor: pointer;
+            background-color: #183B4E; /* Dark Blue/Teal for close button */
+            color: #F3F3E0;
         }
-
         .feedback-modal-content .close-btn:hover {
-            background-color: #e0e0e0;
-            color: #333;
+            background-color: #DDA853; /* Golden on hover */
+            color: #183B4E;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
     <!-- Header Section -->
-    <header class="bg-white shadow-sm py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
+    <header class="py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
         <div class="flex items-center">
             <!-- Website Name/Logo -->
-            <a href="/" class="text-2xl font-bold text-blue-700 hover:text-blue-800 transition-colors">
+            <a href="/" class="text-2xl font-bold hover:text-blue-800 transition-colors">
                 <span class="hidden sm:inline">AssetSOS</span>
                 <span class="sm:hidden">A.S.</span> <!-- Abbreviation for mobile -->
             </a>
             <!-- Short, Benefit-Oriented Tagline (visible on larger screens) -->
-            <p class="ml-4 text-gray-600 hidden md:block">Your Instant Spec Solution.</p>
+            <p class="ml-4 hidden md:block">Your Instant Spec Solution.</p>
         </div>
 
         <!-- Global Navigation (Hamburger menu for mobile, horizontal for desktop) -->
         <nav class="hidden md:flex space-x-6">
-            <a href="#" class="text-gray-700 hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 font-medium transition-colors">About Us</a>
+            <a href="#" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
+            <a href="#" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
+            <a href="#" class="hover:text-blue-700 font-medium transition-colors">About Us</a>
         </nav>
 
         <!-- Hamburger Menu Icon for Mobile (will be handled by JS) -->
-        <button class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button class="md:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
     </header>
@@ -220,32 +295,32 @@
 
         <!-- Hero Section -->
         <section class="text-center mb-12 hero-section">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
                 AssetSOS: Your Instant Guide to Marketing Asset Specifications
             </h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
                 Accurate, up-to-date dimensions and guidelines for all your digital and offline creative needs.
             </p>
             <!-- Prominent Search Bar -->
             <div class="max-w-xl mx-auto flex">
                 <input type="text" placeholder="Search for specs (e.g., 'Facebook video', 'Roll-up banner')"
-                       class="flex-grow p-3 border border-gray-300 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
-                <button class="bg-blue-600 text-white p-3 rounded-r-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                       class="flex-grow p-3 border rounded-l-xl focus:outline-none focus:ring-2">
+                <button class="p-3 rounded-r-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
             </div>
         </section>
 
         <!-- Filter Options Section -->
-        <section class="mb-12 bg-white p-6 rounded-xl shadow-md filter-options-section">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Find Your Specs</h2>
+        <section class="mb-12 p-6 rounded-xl shadow-md filter-options-section">
+            <h2 class="text-2xl font-semibold mb-6">Find Your Specs</h2>
 
             <!-- Digital / Offline Toggle -->
             <div class="flex space-x-4 mb-6">
-                <button class="flex-1 py-3 px-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="flex-1 py-3 px-6 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Digital
                 </button>
-                <button class="flex-1 py-3 px-6 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="flex-1 py-3 px-6 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Offline (Printing)
                 </button>
             </div>
@@ -253,20 +328,20 @@
             <!-- Dynamic Filter Selectors -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <label for="platform-select" class="block text-gray-700 text-sm font-medium mb-2">Platform / Category</label>
-                    <select id="platform-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white">
+                    <label for="platform-select" class="block text-sm font-medium mb-2">Platform / Category</label>
+                    <select id="platform-select" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">All</option>
                     </select>
                 </div>
                 <div>
-                    <label for="asset-type-select" class="block text-gray-700 text-sm font-medium mb-2">Specific Asset Type</label>
-                    <select id="asset-type-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white">
+                    <label for="asset-type-select" class="block text-sm font-medium mb-2">Specific Asset Type</label>
+                    <select id="asset-type-select" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">All</option>
                     </select>
                 </div>
                 <div>
-                    <label for="media-type-select" class="block text-gray-700 text-sm font-medium mb-2">Media Type</label>
-                    <select id="media-type-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white">
+                    <label for="media-type-select" class="block text-sm font-medium mb-2">Media Type</label>
+                    <select id="media-type-select" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">All</option>
                     </select>
                 </div>
@@ -275,7 +350,7 @@
 
         <!-- Showcase of Popular/Recently Added Specifications -->
         <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Popular & Recently Updated Specs</h2>
+            <h2 class="text-2xl font-semibold mb-6">Popular & Recently Updated Specs</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Spec cards will be dynamically loaded here by JavaScript -->
                 <p class="text-gray-500 text-center col-span-full py-8">Loading specifications...</p>
@@ -285,18 +360,18 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-6 px-4 md:px-8 text-center text-sm">
+    <footer class="py-6 px-4 md:px-8 text-center text-sm">
         <p>&copy; 2025 AssetSOS. All rights reserved.</p>
         <p class="mt-2">Built with <span class="text-blue-400">AI Collaboration</span> (Gemini).</p>
         <p class="mt-2">
-            <a href="#" class="text-blue-400 hover:underline">About Us</a> |
-            <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> |
-            <a href="#" class="text-blue-400 hover:underline">Terms of Service</a>
+            <a href="#" class="hover:underline">About Us</a> |
+            <a href="#" class="hover:underline">Privacy Policy</a> |
+            <a href="#" class="hover:underline">Terms of Service</a>
         </p>
     </footer>
 
     <!-- Floating "Suggestion Box" Icon -->
-    <button id="suggestion-box-btn" class="fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+    <button id="suggestion-box-btn" class="fixed bottom-4 right-4 p-4 rounded-full shadow-lg focus:outline-none focus:ring-2 transition-colors">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
         <span class="sr-only">Suggestion Box</span>
     </button>
@@ -310,24 +385,24 @@
                 </svg>
                 <span class="sr-only">Close Feedback Form</span>
             </button>
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Provide Feedback / Suggest a Spec</h2>
+            <h2 class="text-2xl font-semibold mb-4">Provide Feedback / Suggest a Spec</h2>
             <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
                 <p class="hidden">
                     <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
                 </p>
                 <div>
-                    <label for="feedback-name" class="block text-gray-700 text-sm font-medium mb-1">Your Name (Optional)</label>
-                    <input type="text" id="feedback-name" name="name" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label for="feedback-name" class="block text-sm font-medium mb-1">Your Name (Optional)</label>
+                    <input type="text" id="feedback-name" name="name" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2">
                 </div>
                 <div>
-                    <label for="feedback-email" class="block text-gray-700 text-sm font-medium mb-1">Your Email (Optional)</label>
-                    <input type="email" id="feedback-email" name="email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label for="feedback-email" class="block text-sm font-medium mb-1">Your Email (Optional)</label>
+                    <input type="email" id="feedback-email" name="email" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2">
                 </div>
                 <div>
-                    <label for="feedback-message" class="block text-gray-700 text-sm font-medium mb-1">Your Feedback / Suggestion <span class="text-red-500">*</span></label>
-                    <textarea id="feedback-message" name="message" rows="5" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <label for="feedback-message" class="block text-sm font-medium mb-1">Your Feedback / Suggestion <span class="text-red-500">*</span></label>
+                    <textarea id="feedback-message" name="message" rows="5" required class="w-full p-2 border rounded-md focus:outline-none focus:ring-2"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="w-full py-2 px-4 rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Send Feedback
                 </button>
             </form>

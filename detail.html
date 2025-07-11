@@ -8,78 +8,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /*
+            Specific Asset Detail Page CSS Styling for AssetSOS - Dark Mode Theme
+            This CSS complements the Tailwind CSS framework.
+            It provides custom styles for elements on the detail page,
+            ensuring consistency with the homepage's dark mode theme.
+        */
+
+        /* Base Styles - Dark Mode */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Light background for a minimalist feel */
-            color: #333;
+            background-color: #183B4E; /* Dark Blue/Teal background */
+            color: #F3F3E0; /* Lightest Cream for default text */
         }
+
+        /* Basic styling for interactive elements to make them rounded */
         .rounded-lg { border-radius: 0.5rem; }
         .rounded-xl { border-radius: 0.75rem; }
         .rounded-full { border-radius: 9999px; }
 
-        /* Mobile Navigation Overlay (copied for consistency, though not strictly needed on detail page unless navigation is complex) */
+        /* Header Specifics (Consistent with index.html) */
+        header {
+            background-color: #27548A; /* Medium Blue for header */
+            color: #F3F3E0; /* Lightest Cream text */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+        }
+        header a {
+            color: #DDA853; /* Golden accent for main title */
+        }
+        header a:hover {
+            color: #F3F3E0; /* Hover to off-white */
+        }
+        header p.text-gray-600 { /* Tagline */
+            color: #F3F3E0; /* Ensure tagline is visible */
+        }
+        header nav a {
+            color: #F3F3E0; /* Nav links off-white */
+            font-weight: 400; /* Slightly lighter weight for nav */
+        }
+        header nav a:hover {
+            color: #DDA853; /* Golden accent on hover */
+        }
+        header button.md\:hidden { /* Hamburger icon */
+            color: #F3F3E0;
+            background-color: rgba(243, 243, 224, 0.1); /* Subtle background */
+        }
+        header button.md\:hidden:hover {
+            background-color: rgba(243, 243, 224, 0.2);
+        }
+
+        /* Mobile Navigation Overlay (Consistent with index.html) */
         .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 20;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
         }
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+
+        /* Mobile Navigation Menu (Consistent with index.html) */
         .mobile-nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 70%;
-            max-width: 300px;
-            height: 100%;
-            background-color: #ffffff;
-            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 30;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
-        }
-        .mobile-nav-menu.active {
-            right: 0;
+            background-color: #183B4E; /* Dark Blue/Teal for mobile menu */
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
         }
         .mobile-nav-menu a {
-            display: block;
-            padding: 0.75rem 0;
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            transition: color 0.2s ease;
+            color: #F3F3E0; /* Off-white links */
+            border-bottom: 1px solid rgba(243, 243, 224, 0.1); /* Subtle divider */
         }
         .mobile-nav-menu a:hover {
-            color: #2563eb;
-        }
-        .mobile-nav-menu a:last-child {
-            border-bottom: none;
+            color: #DDA853; /* Golden accent on hover */
         }
         .mobile-nav-menu .close-btn {
-            align-self: flex-end;
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            background-color: #f0f0f0;
-            border-radius: 9999px;
-            color: #555;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            background-color: #27548A; /* Medium Blue for close button */
+            color: #F3F3E0;
         }
         .mobile-nav-menu .close-btn:hover {
-            background-color: #e0e0e0;
-            color: #333;
+            background-color: #DDA853; /* Golden on hover */
+            color: #183B4E; /* Dark text on golden */
         }
+
+        /* General Interactive Element Enhancements */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -92,14 +96,14 @@
             border-width: 0;
         }
 
-        /* Feedback Modal Styles (copied for consistency) */
+        /* Feedback Modal Styles (Consistent with index.html) */
         .feedback-modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.8); /* Even darker overlay */
             z-index: 40;
             display: flex;
             justify-content: center;
@@ -113,10 +117,11 @@
             visibility: visible;
         }
         .feedback-modal-content {
-            background-color: #ffffff;
+            background-color: #27548A; /* Medium Blue for modal background */
+            color: #F3F3E0; /* Off-white text */
             padding: 2rem;
             border-radius: 0.75rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
             width: 90%;
             max-width: 500px;
             transform: translateY(20px);
@@ -128,42 +133,118 @@
             transform: translateY(0);
             opacity: 1;
         }
+        .feedback-modal-content h2 {
+            color: #DDA853; /* Golden heading */
+        }
+        .feedback-modal-content label {
+            color: #F3F3E0; /* Off-white labels */
+        }
+        .feedback-modal-content input,
+        .feedback-modal-content textarea {
+            background-color: #183B4E; /* Dark Blue/Teal for input fields */
+            border-color: #27548A; /* Medium Blue border */
+            color: #F3F3E0; /* Light text in inputs */
+        }
+        .feedback-modal-content input:focus,
+        .feedback-modal-content textarea:focus {
+            border-color: #DDA853; /* Golden focus ring */
+            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5);
+        }
+        .feedback-modal-content button[type="submit"] {
+            background-color: #DDA853; /* Golden submit button */
+            color: #183B4E; /* Dark text */
+        }
+        .feedback-modal-content button[type="submit"]:hover {
+            background-color: #F3F3E0; /* Off-white on hover */
+            color: #183B4E; /* Dark text */
+        }
         .feedback-modal-content .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem;
-            background-color: #f0f0f0;
-            border-radius: 9999px;
-            color: #555;
-            transition: background-color 0.2s ease, color 0.2s ease;
-            cursor: pointer;
+            background-color: #183B4E; /* Dark Blue/Teal for close button */
+            color: #F3F3E0;
         }
         .feedback-modal-content .close-btn:hover {
-            background-color: #e0e0e0;
-            color: #333;
+            background-color: #DDA853; /* Golden on hover */
+            color: #183B4E;
+        }
+
+        /* Specific Detail Page Elements */
+        .back-link {
+            color: #DDA853; /* Golden for back link */
+            transition: color 0.2s ease;
+        }
+        .back-link:hover {
+            color: #F3F3E0; /* Off-white on hover */
+        }
+
+        #asset-detail-content {
+            background-color: #27548A; /* Medium Blue for detail content area */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+            color: #F3F3E0; /* Off-white text */
+        }
+        #asset-detail-content h1 {
+            color: #DDA853; /* Golden for main asset title */
+        }
+        #asset-detail-content p.text-lg.text-gray-600 { /* Subtitle like "Image asset" */
+            color: rgba(243, 243, 224, 0.8); /* Slightly muted off-white */
+        }
+        #asset-detail-content .bg-gray-50 { /* Info boxes */
+            background-color: #183B4E; /* Dark Blue/Teal for info boxes */
+            color: #F3F3E0; /* Off-white text */
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
+        }
+        #asset-detail-content .bg-gray-50 h3 {
+            color: #DDA853; /* Golden for info box headings */
+        }
+        #asset-detail-content .bg-gray-50 p {
+            color: #F3F3E0; /* Off-white for info box text */
+        }
+        #asset-detail-content p.text-gray-500 { /* Last updated text */
+            color: rgba(243, 243, 224, 0.6);
+        }
+        #asset-detail-content a.text-blue-600 { /* Source URL link */
+            color: #DDA853; /* Golden link */
+        }
+        #asset-detail-content a.text-blue-600:hover {
+            color: #F3F3E0; /* Off-white on hover */
+        }
+
+        /* Floating Suggestion Box Button (Consistent with index.html) */
+        #suggestion-box-btn {
+            background-color: #DDA853; /* Golden button */
+            color: #183B4E; /* Dark text/icon */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #suggestion-box-btn:hover {
+            background-color: #F3F3E0; /* Off-white on hover */
+            color: #183B4E; /* Dark text/icon */
+            transform: translateY(-3px); /* Slight lift */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+        #suggestion-box-btn:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Header Section (Copied from index.html for consistency) -->
-    <header class="bg-white shadow-sm py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
+    <!-- Header Section (Consistent with index.html) -->
+    <header class="py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
         <div class="flex items-center">
-            <a href="index.html" class="text-2xl font-bold text-blue-700 hover:text-blue-800 transition-colors">
+            <a href="index.html" class="text-2xl font-bold hover:text-blue-800 transition-colors">
                 <span class="hidden sm:inline">AssetSOS</span>
                 <span class="sm:hidden">A.S.</span>
             </a>
-            <p class="ml-4 text-gray-600 hidden md:block">Your Instant Spec Solution.</p>
+            <p class="ml-4 hidden md:block">Your Instant Spec Solution.</p>
         </div>
 
         <nav class="hidden md:flex space-x-6">
-            <a href="index.html" class="text-gray-700 hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
-            <a href="index.html" class="text-gray-700 hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 font-medium transition-colors">About Us</a>
+            <a href="index.html" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
+            <a href="index.html" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
+            <a href="#" class="hover:text-blue-700 font-medium transition-colors">About Us</a>
         </nav>
 
-        <button class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button class="md:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
     </header>
@@ -171,36 +252,36 @@
     <!-- Main Content Area for Asset Details -->
     <main class="flex-grow container mx-auto px-4 py-8 md:py-12">
         <div class="mb-8">
-            <a href="index.html" class="text-blue-600 hover:underline flex items-center">
+            <a href="index.html" class="back-link flex items-center">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Back to all Specs
             </a>
         </div>
 
-        <section id="asset-detail-content" class="bg-white p-6 rounded-xl shadow-md">
+        <section id="asset-detail-content" class="p-6 rounded-xl shadow-md">
             <!-- Asset details will be dynamically loaded here by JavaScript -->
             <p class="text-gray-600 text-center py-8">Loading asset details...</p>
         </section>
     </main>
 
-    <!-- Footer Section (Copied from index.html for consistency) -->
-    <footer class="bg-gray-800 text-white py-6 px-4 md:px-8 text-center text-sm">
+    <!-- Footer Section (Consistent with index.html) -->
+    <footer class="py-6 px-4 md:px-8 text-center text-sm">
         <p>&copy; 2025 AssetSOS. All rights reserved.</p>
         <p class="mt-2">Built with <span class="text-blue-400">AI Collaboration</span> (Gemini).</p>
         <p class="mt-2">
-            <a href="#" class="text-blue-400 hover:underline">About Us</a> |
-            <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> |
-            <a href="#" class="text-blue-400 hover:underline">Terms of Service</a>
+            <a href="#" class="hover:underline">About Us</a> |
+            <a href="#" class="hover:underline">Privacy Policy</a> |
+            <a href="#" class="hover:underline">Terms of Service</a>
         </p>
     </footer>
 
-    <!-- Floating "Suggestion Box" Icon (Copied for consistency) -->
-    <button id="suggestion-box-btn" class="fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+    <!-- Floating "Suggestion Box" Icon (Consistent with index.html) -->
+    <button id="suggestion-box-btn" class="fixed bottom-4 right-4 p-4 rounded-full shadow-lg focus:outline-none focus:ring-2 transition-colors">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
         <span class="sr-only">Suggestion Box</span>
     </button>
 
-    <!-- Feedback Modal/Slide-out panel (Copied for consistency) -->
+    <!-- Feedback Modal/Slide-out panel (Consistent with index.html) -->
     <div id="feedback-modal-overlay" class="feedback-modal-overlay">
         <div class="feedback-modal-content">
             <button id="feedback-modal-close-btn" class="close-btn">
@@ -209,30 +290,30 @@
                 </svg>
                 <span class="sr-only">Close Feedback Form</span>
             </button>
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Provide Feedback / Suggest a Spec</h2>
+            <h2 class="text-2xl font-semibold mb-4">Provide Feedback / Suggest a Spec</h2>
             <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
                 <p class="hidden">
                     <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
                 </p>
                 <div>
-                    <label for="feedback-name" class="block text-gray-700 text-sm font-medium mb-1">Your Name (Optional)</label>
-                    <input type="text" id="feedback-name" name="name" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label for="feedback-name" class="block text-sm font-medium mb-1">Your Name (Optional)</label>
+                    <input type="text" id="feedback-name" name="name" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2">
                 </div>
                 <div>
-                    <label for="feedback-email" class="block text-gray-700 text-sm font-medium mb-1">Your Email (Optional)</label>
-                    <input type="email" id="feedback-email" name="email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label for="feedback-email" class="block text-sm font-medium mb-1">Your Email (Optional)</label>
+                    <input type="email" id="feedback-email" name="email" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2">
                 </div>
                 <div>
-                    <label for="feedback-message" class="block text-gray-700 text-sm font-medium mb-1">Your Feedback / Suggestion <span class="text-red-500">*</span></label>
-                    <textarea id="feedback-message" name="message" rows="5" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <label for="feedback-message" class="block text-sm font-medium mb-1">Your Feedback / Suggestion <span class="text-red-500">*</span></label>
+                    <textarea id="feedback-message" name="message" rows="5" required class="w-full p-2 border rounded-md focus:outline-none focus:ring-2"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="w-full py-2 px-4 rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Send Feedback
                 </button>
             </form>
         </div>
     </div>
 
-    <script src="detail_script.js"></script> <!-- Link to the new JavaScript file for detail page -->
+    <script src="detail_script.js"></script> <!-- Link to the JavaScript file for detail page -->
 </body>
 </html>
