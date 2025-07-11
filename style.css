@@ -1,27 +1,21 @@
 /*
-    Homepage CSS Styling for The Creative Spec Guide
+    Consolidated Homepage CSS Styling for The Creative Spec Guide
     This CSS complements the Tailwind CSS framework linked in the HTML.
     It provides custom styles for elements not fully covered by Tailwind,
     and demonstrates how to achieve responsiveness and an app-like feel.
 */
 
-/* Base Styles (already in HTML <style> block, but good to note here) */
+/* Base Styles */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f8f8f8; /* Light background for a minimalist feel */
     color: #333;
 }
 
-/* Basic styling for interactive elements to make them rounded (already in HTML <style> block) */
+/* Basic styling for interactive elements to make them rounded */
 .rounded-lg { border-radius: 0.5rem; }
 .rounded-xl { border-radius: 0.75rem; }
 .rounded-full { border-radius: 9999px; }
-
-/*
-    1. Header Responsiveness & Mobile Navigation
-    Tailwind classes handle most of the header's responsiveness (flex, justify-between, hidden md:flex).
-    Here we add custom CSS for the mobile menu overlay/slide-out, which will be toggled by JavaScript.
-*/
 
 /* Mobile Navigation Overlay (initially hidden) */
 .mobile-nav-overlay {
@@ -99,39 +93,9 @@ body {
     color: #333;
 }
 
-/*
-    2. Main Content Area Responsiveness
-    The `container mx-auto px-4 py-8 md:py-12` classes already handle horizontal centering,
-    padding, and vertical spacing.
-    The `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` on the spec cards section
-    is a prime example of Tailwind's responsive grid.
-*/
-
-/* No additional custom CSS needed here for general layout responsiveness,
-   as Tailwind's utility-first approach is highly effective. */
-
-/*
-    3. Filter Options Section
-    The `grid grid-cols-1 md:grid-cols-3 gap-6` handles the responsiveness of the filter selects.
-    The `flex-1` on the Digital/Offline buttons ensures they share space equally.
-*/
-
-/* No additional custom CSS needed here. */
-
-/*
-    4. Floating Suggestion Box Icon
-    Tailwind's `fixed bottom-4 right-4` handles positioning.
-    `rounded-full`, `shadow-lg`, `hover:bg-blue-700`, `focus:outline-none`,
-    `focus:ring-2`, `focus:ring-blue-500`, `transition-colors` handle styling and interaction.
-*/
-
-/* No additional custom CSS needed here. */
-
-/*
-    5. General Interactive Element Enhancements (beyond basic Tailwind)
-    Adding subtle hover effects or transitions to elements for an "app-like feel".
-    Many are already covered by Tailwind's hover: and transition- classes.
-*/
+/* General Interactive Element Enhancements (beyond basic Tailwind) */
+/* Adding subtle hover effects or transitions to elements for an "app-like feel". */
+/* Many are already covered by Tailwind's hover: and transition- classes. */
 
 /* Example: Enhancing the search button's active state */
 .max-w-xl button:active {
@@ -143,11 +107,7 @@ body {
     transform: translateY(1px);
 }
 
-/*
-    6. Accessibility (SR-Only for screen readers)
-    The `sr-only` class is a Tailwind utility to hide content visually but keep it accessible
-    to screen readers.
-*/
+/* Accessibility (SR-Only for screen readers) */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -158,4 +118,61 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+}
+
+/* Feedback Modal Styles */
+.feedback-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    z-index: 40; /* Above mobile menu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.feedback-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.feedback-modal-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    transform: translateY(20px); /* Start slightly below center */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    position: relative; /* For positioning the close button */
+}
+
+.feedback-modal-overlay.active .feedback-modal-content {
+    transform: translateY(0); /* Slide into center */
+    opacity: 1;
+}
+
+.feedback-modal-content .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 9999px;
+    color: #555;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.feedback-modal-content .close-btn:hover {
+    background-color: #e0e0e0;
+    color: #333;
 }
