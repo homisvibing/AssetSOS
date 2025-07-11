@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let digitalSpecsData = [];
     let offlineSpecsData = [];
     let currentData = []; // Will hold either digitalSpecsData or offlineSpecsData
-    const initialCardLimit = 9; // Number of cards to show initially
+    const initialCardLimit = 3; // Number of cards to show initially
     let showingAllCards = false; // Flag to track if all cards are being shown
 
     // --- Dynamic Spec Card Rendering ---
@@ -158,14 +158,20 @@ document.addEventListener('DOMContentLoaded', () => {
         data.forEach(item => {
             const purpose = item["Use of purposes"];
             if (purpose && purpose !== "N/A") {
-                // Extract the main platform name (e.g., "Facebook", "Instagram", "YouTube", "TikTok", "LinkedIn")
-                const platformMatch = purpose.match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn|Standard|A4 Flyer|Roll-up Banner|Outdoor Billboard|A5 Postcard)/); // Added offline categories
-                if (platformMatch && platformMatch[1]) {
-                    // For offline, use the full "Use of purposes" as the "platform" for simplicity in this context
-                    if (item["Media Type"] === "Print") {
-                        platforms.add(purpose.split(' (')[0]); // Take "Standard Business Card" from "Standard Business Card (3.5 x 2 inches at 300 DPI)"
-                    } else {
-                        platforms.add(platformMatch[1]);
+                // Determine platform based on Media Type or initial words
+                if (item["Media Type"] === "Print") {
+                    // For print items, use the first part of the purpose as the "platform"
+                    // e.g., "Standard Business Card" -> "Standard Business Card"
+                    // This creates distinct categories for print items
+                    const printPlatformMatch = purpose.match(/^(Standard Business Card|A4 Flyer \/ Leaflet|Roll-up Banner \(Standard\)|Outdoor Billboard \(Large Format\)|A5 Postcard)/);
+                    if (printPlatformMatch && printPlatformMatch[1]) {
+                        platforms.add(printPlatformMatch[1].replace(/ \(.*\)/, '')); // Remove parentheses for cleaner display
+                    }
+                } else {
+                    // For digital, extract the main platform name (e.g., "Facebook", "Instagram")
+                    const digitalPlatformMatch = purpose.match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn)/);
+                    if (digitalPlatformMatch && digitalPlatformMatch[1]) {
+                        platforms.add(digitalPlatformMatch[1]);
                     }
                 }
             }
@@ -179,16 +185,20 @@ document.addEventListener('DOMContentLoaded', () => {
         data.forEach(item => {
             const purpose = item["Use of purposes"];
             if (purpose && purpose !== "N/A") {
-                const platformMatch = purpose.match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn|Standard|A4 Flyer|Roll-up Banner|Outdoor Billboard|A5 Postcard)/); // Added offline categories
                 let itemPlatform = '';
-
                 if (item["Media Type"] === "Print") {
-                    itemPlatform = purpose.split(' (')[0]; // For print, compare with the base name
-                } else if (platformMatch && platformMatch[1]) {
-                    itemPlatform = platformMatch[1];
+                    const printPlatformMatch = purpose.match(/^(Standard Business Card|A4 Flyer \/ Leaflet|Roll-up Banner \(Standard\)|Outdoor Billboard \(Large Format\)|A5 Postcard)/);
+                    if (printPlatformMatch && printPlatformMatch[1]) {
+                        itemPlatform = printPlatformMatch[1].replace(/ \(.*\)/, '');
+                    }
+                } else {
+                    const digitalPlatformMatch = purpose.match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn)/);
+                    if (digitalPlatformMatch && digitalPlatformMatch[1]) {
+                        itemPlatform = digitalPlatformMatch[1];
+                    }
                 }
 
-                if (selectedPlatform === "" || itemPlatform === selectedPlatform) {
+                if (selectedPlatform === "" || itemPlatform.toLowerCase() === selectedPlatform.toLowerCase()) {
                     assetTypes.add(purpose); // Add the full "Use of purposes" as an asset type
                 }
             }
@@ -212,13 +222,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 (spec["Important notes"] && spec["Important notes"].toLowerCase().includes(searchTerm))
             );
 
-            // Platform filter: checks if 'Use of purposes' starts with the selected platform
+            // Platform filter logic
             let specPlatform = '';
             if (spec["Media Type"] === "Print") {
-                specPlatform = spec["Use of purposes"] ? spec["Use of purposes"].split(' (')[0].toLowerCase() : '';
+                const printPlatformMatch = spec["Use of purposes"] ? spec["Use of purposes"].match(/^(Standard Business Card|A4 Flyer \/ Leaflet|Roll-up Banner \(Standard\)|Outdoor Billboard \(Large Format\)|A5 Postcard)/) : null;
+                specPlatform = printPlatformMatch && printPlatformMatch[1] ? printPlatformMatch[1].replace(/ \(.*\)/, '').toLowerCase() : '';
             } else {
-                const platformMatch = spec["Use of purposes"] ? spec["Use of purposes"].match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn)/) : null;
-                specPlatform = platformMatch && platformMatch[1] ? platformMatch[1].toLowerCase() : '';
+                const digitalPlatformMatch = spec["Use of purposes"] ? spec["Use of purposes"].match(/^(Facebook|Instagram|YouTube|TikTok|LinkedIn)/) : null;
+                specPlatform = digitalPlatformMatch && digitalPlatformMatch[1] ? digitalPlatformMatch[1].toLowerCase() : '';
             }
             const matchesPlatform = selectedPlatform === "" || specPlatform === selectedPlatform;
 
@@ -270,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     digitalToggleButton.addEventListener('click', () => {
         if (currentData === digitalSpecsData) return; // Prevent unnecessary re-render
 
-        digitalToggleButton.classList.remove('bg-gray-200', 'text-gray-800');
+        digitalToggleButton.classList.remove('bg-183B4E', 'text-F3F3E0'); // Inactive colors
         digitalToggleButton.classList.add('bg-DDA853', 'text-183B4E'); // Active colors
         offlineToggleButton.classList.remove('bg-DDA853', 'text-183B4E'); // Inactive colors
         offlineToggleButton.classList.add('bg-183B4E', 'text-F3F3E0');
@@ -290,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     offlineToggleButton.addEventListener('click', () => {
         if (currentData === offlineSpecsData) return; // Prevent unnecessary re-render
 
-        offlineToggleButton.classList.remove('bg-gray-200', 'text-gray-800');
+        offlineToggleButton.classList.remove('bg-183B4E', 'text-F3F3E0'); // Inactive colors
         offlineToggleButton.classList.add('bg-DDA853', 'text-183B4E'); // Active colors
         digitalToggleButton.classList.remove('bg-DDA853', 'text-183B4E'); // Inactive colors
         digitalToggleButton.classList.add('bg-183B4E', 'text-F3F3E0');
@@ -304,10 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
             platformSelect.innerHTML = '<option value="">All</option>';
             assetTypeSelect.innerHTML = '<option value="">All</option>';
             mediaTypeSelect.innerHTML = '<option value="">All</option>';
-            // Optionally disable them
-            // platformSelect.disabled = true;
-            // assetTypeSelect.disabled = true;
-            // mediaTypeSelect.disabled = true;
         } else {
             populateFilterDropdown(platformSelect, getUniquePlatforms(currentData));
             populateFilterDropdown(mediaTypeSelect, [...new Set(currentData.map(item => item["Media Type"]).filter(value => value && value !== "N/A"))].sort());

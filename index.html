@@ -9,17 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /*
-            Consolidated Homepage CSS Styling for AssetSOS - Dark Mode Theme
+            Consolidated Homepage CSS Styling for AssetSOS - Updated Dark Mode Theme
             This CSS complements the Tailwind CSS framework.
             It provides custom styles for elements not fully covered by Tailwind,
             and ensures responsiveness and an app-like feel with the new color palette.
         */
 
+        /* Color Palette Variables */
+        :root {
+            --color-dark-blue: #3674B5;
+            --color-medium-blue: #578FCA;
+            --color-light-cream: #F5F0CD;
+            --color-accent-yellow: #FADA7A;
+        }
+
         /* Base Styles - Dark Mode */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #183B4E; /* Dark Blue/Teal background */
-            color: #F3F3E0; /* Lightest Cream for default text */
+            background-color: var(--color-dark-blue); /* Darker Blue background */
+            color: var(--color-light-cream); /* Light Cream for default text */
         }
 
         /* Basic styling for interactive elements to make them rounded */
@@ -29,32 +37,32 @@
 
         /* Header Specifics */
         header {
-            background-color: #27548A; /* Medium Blue for header */
-            color: #F3F3E0; /* Lightest Cream text */
+            background-color: var(--color-medium-blue); /* Medium Blue for header */
+            color: var(--color-light-cream); /* Light Cream text */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Deeper shadow */
         }
         header a {
-            color: #DDA853; /* Golden accent for main title */
+            color: var(--color-accent-yellow); /* Accent Yellow for main title */
         }
         header a:hover {
-            color: #F3F3E0; /* Hover to off-white */
+            color: var(--color-light-cream); /* Hover to light cream */
         }
         header p.text-gray-600 { /* Tagline */
-            color: #F3F3E0; /* Ensure tagline is visible */
+            color: var(--color-light-cream); /* Ensure tagline is visible */
         }
         header nav a {
-            color: #F3F3E0; /* Nav links off-white */
+            color: var(--color-light-cream); /* Nav links light cream */
             font-weight: 400; /* Slightly lighter weight for nav */
         }
         header nav a:hover {
-            color: #DDA853; /* Golden accent on hover */
+            color: var(--color-accent-yellow); /* Accent Yellow on hover */
         }
         header button.md\:hidden { /* Hamburger icon */
-            color: #F3F3E0;
-            background-color: rgba(243, 243, 224, 0.1); /* Subtle background */
+            color: var(--color-light-cream);
+            background-color: rgba(245, 240, 205, 0.1); /* Subtle background */
         }
         header button.md\:hidden:hover {
-            background-color: rgba(243, 243, 224, 0.2);
+            background-color: rgba(245, 240, 205, 0.2);
         }
 
         /* Mobile Navigation Overlay */
@@ -70,7 +78,7 @@
             width: 70%; /* Adjust as needed for mobile screen size */
             max-width: 300px; /* Max width for larger tablets in portrait */
             height: 100%;
-            background-color: #183B4E; /* Dark Blue/Teal for mobile menu */
+            background-color: var(--color-dark-blue); /* Darker Blue for mobile menu */
             box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
             z-index: 30; /* Above overlay */
             transition: right 0.3s ease;
@@ -86,12 +94,12 @@
             padding: 0.75rem 0;
             font-size: 1.125rem; /* text-lg */
             font-weight: 600; /* font-semibold */
-            color: #F3F3E0; /* Off-white links */
-            border-bottom: 1px solid rgba(243, 243, 224, 0.1); /* Subtle divider */
+            color: var(--color-light-cream); /* Light Cream links */
+            border-bottom: 1px solid rgba(245, 240, 205, 0.1); /* Subtle divider */
             transition: color 0.2s ease;
         }
         .mobile-nav-menu a:hover {
-            color: #DDA853; /* Golden accent on hover */
+            color: var(--color-accent-yellow); /* Accent Yellow on hover */
         }
         .mobile-nav-menu a:last-child {
             border-bottom: none;
@@ -100,14 +108,14 @@
             align-self: flex-end; /* Push to top right */
             margin-bottom: 1rem;
             padding: 0.5rem;
-            background-color: #27548A; /* Medium Blue for close button */
+            background-color: var(--color-medium-blue); /* Medium Blue for close button */
             border-radius: 9999px; /* rounded-full */
-            color: #F3F3E0;
+            color: var(--color-light-cream);
             transition: background-color 0.2s ease, color 0.2s ease;
         }
         .mobile-nav-menu .close-btn:hover {
-            background-color: #DDA853; /* Golden on hover */
-            color: #183B4E; /* Dark text on golden */
+            background-color: var(--color-accent-yellow); /* Accent Yellow on hover */
+            color: var(--color-dark-blue); /* Dark text on accent */
         }
 
         /* General Interactive Element Enhancements (beyond basic Tailwind) */
@@ -125,35 +133,35 @@
 
         /* Hero Section */
         .hero-section h1 {
-            color: #F3F3E0; /* Off-white for main heading */
+            color: var(--color-light-cream); /* Light Cream for main heading */
         }
         .hero-section p {
-            color: #F3F3E0; /* Off-white for subheading */
+            color: var(--color-light-cream); /* Light Cream for subheading */
             opacity: 0.8; /* Slightly less prominent */
         }
         .hero-section input[type="text"] {
-            background-color: #27548A; /* Medium Blue for input background */
-            border-color: #183B4E; /* Dark Blue/Teal border */
-            color: #F3F3E0; /* Light text in input */
+            background-color: var(--color-medium-blue); /* Medium Blue for input background */
+            border-color: var(--color-dark-blue); /* Darker Blue border */
+            color: var(--color-light-cream); /* Light text in input */
             padding: 0.75rem 1rem; /* Adjust padding */
         }
         .hero-section input[type="text"]::placeholder {
-            color: rgba(243, 243, 224, 0.6); /* Lighter placeholder text */
+            color: rgba(245, 240, 205, 0.6); /* Lighter placeholder text */
         }
         .hero-section input[type="text"]:focus {
-            border-color: #DDA853; /* Golden focus ring */
-            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5); /* Golden glow */
+            border-color: var(--color-accent-yellow); /* Accent Yellow focus ring */
+            box-shadow: 0 0 0 2px rgba(250, 218, 122, 0.5); /* Accent Yellow glow */
         }
         .hero-section button {
-            background-color: #DDA853; /* Golden for search button */
-            color: #183B4E; /* Dark text on golden */
+            background-color: var(--color-accent-yellow); /* Accent Yellow for search button */
+            color: var(--color-dark-blue); /* Dark text on accent */
             padding: 0.75rem 1.25rem; /* Adjust padding */
             font-weight: 600;
             transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
         }
         .hero-section button:hover {
-            background-color: #F3F3E0; /* Off-white on hover */
-            color: #183B4E; /* Dark text on hover */
+            background-color: var(--color-light-cream); /* Light Cream on hover */
+            color: var(--color-dark-blue); /* Dark text on hover */
         }
         .hero-section button:active {
             transform: translateY(1px);
@@ -161,54 +169,54 @@
 
         /* Filter Options Section */
         .filter-options-section {
-            background-color: #27548A; /* Medium Blue for filter section */
+            background-color: var(--color-medium-blue); /* Medium Blue for filter section */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow */
         }
         .filter-options-section h2 {
-            color: #F3F3E0; /* Off-white heading */
+            color: var(--color-light-cream); /* Light Cream heading */
         }
         .filter-options-section button {
             transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
             font-weight: 600;
         }
         .filter-options-section button:first-child { /* Digital button */
-            background-color: #DDA853; /* Golden when active */
-            color: #183B4E; /* Dark text */
+            background-color: var(--color-accent-yellow); /* Accent Yellow when active */
+            color: var(--color-dark-blue); /* Dark text */
         }
         .filter-options-section button:first-child.bg-gray-200 { /* Digital button inactive */
-            background-color: #183B4E; /* Dark Blue/Teal when inactive */
-            color: #F3F3E0; /* Off-white text */
+            background-color: var(--color-dark-blue); /* Darker Blue when inactive */
+            color: var(--color-light-cream); /* Light Cream text */
         }
         .filter-options-section button:last-child { /* Offline button */
-            background-color: #183B4E; /* Dark Blue/Teal when inactive */
-            color: #F3F3E0; /* Off-white text */
+            background-color: var(--color-dark-blue); /* Darker Blue when inactive */
+            color: var(--color-light-cream); /* Light Cream text */
         }
         .filter-options-section button:last-child.bg-blue-600 { /* Offline button active */
-            background-color: #DDA853; /* Golden when active */
-            color: #183B4E; /* Dark text */
+            background-color: var(--color-accent-yellow); /* Accent Yellow when active */
+            color: var(--color-dark-blue); /* Dark text */
         }
         .filter-options-section button:hover:not(.bg-blue-600, .bg-gray-200) {
-            background-color: rgba(221, 168, 83, 0.8); /* Slightly darker golden on hover */
+            background-color: rgba(250, 218, 122, 0.8); /* Slightly darker accent on hover */
         }
         .filter-options-section label {
-            color: #F3F3E0; /* Off-white labels */
+            color: var(--color-light-cream); /* Light Cream labels */
             opacity: 0.9;
         }
         .filter-options-section select {
-            background-color: #183B4E; /* Dark Blue/Teal for select backgrounds */
-            border-color: #27548A; /* Medium Blue border */
-            color: #F3F3E0; /* Light text in selects */
+            background-color: var(--color-dark-blue); /* Darker Blue for select backgrounds */
+            border-color: var(--color-medium-blue); /* Medium Blue border */
+            color: var(--color-light-cream); /* Light Cream text in selects */
             padding: 0.75rem;
         }
         .filter-options-section select:focus {
-            border-color: #DDA853; /* Golden focus ring */
-            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5);
+            border-color: var(--color-accent-yellow); /* Accent Yellow focus ring */
+            box-shadow: 0 0 0 2px rgba(250, 218, 122, 0.5);
         }
 
         /* Spec Cards */
         .spec-card {
-            background-color: #183B4E; /* Dark Blue/Teal for card backgrounds */
-            color: #F3F3E0; /* Off-white text */
+            background-color: var(--color-dark-blue); /* Darker Blue for card backgrounds */
+            color: var(--color-light-cream); /* Light Cream text */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -217,42 +225,42 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
         }
         .spec-card h3 {
-            color: #DDA853; /* Golden for card titles */
+            color: var(--color-accent-yellow); /* Accent Yellow for card titles */
         }
         .spec-card p {
-            color: #F3F3E0; /* Off-white for card text */
+            color: var(--color-light-cream); /* Light Cream for card text */
             opacity: 0.9;
         }
         .spec-card p.text-gray-600 { /* Small text like orientation/aspect ratio */
-            color: rgba(243, 243, 224, 0.7); /* Slightly muted off-white */
+            color: rgba(245, 240, 205, 0.7); /* Slightly muted light cream */
         }
         .spec-card p.text-gray-500 { /* Last updated text */
-            color: rgba(243, 243, 224, 0.6); /* Even more muted */
+            color: rgba(245, 240, 205, 0.6); /* Even more muted */
         }
 
         /* Footer Section */
         footer {
-            background-color: #27548A; /* Medium Blue for footer */
-            color: #F3F3E0; /* Off-white text */
+            background-color: var(--color-medium-blue); /* Medium Blue for footer */
+            color: var(--color-light-cream); /* Light Cream text */
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4); /* Shadow above footer */
         }
         footer a {
-            color: #DDA853; /* Golden links */
+            color: var(--color-accent-yellow); /* Accent Yellow links */
         }
         footer a:hover {
-            color: #F3F3E0; /* Off-white on hover */
+            color: var(--color-light-cream); /* Light Cream on hover */
         }
 
         /* Floating Suggestion Box Button */
         #suggestion-box-btn {
-            background-color: #DDA853; /* Golden button */
-            color: #183B4E; /* Dark text/icon */
+            background-color: var(--color-accent-yellow); /* Accent Yellow button */
+            color: var(--color-dark-blue); /* Dark text/icon */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Deeper shadow */
             transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
         #suggestion-box-btn:hover {
-            background-color: #F3F3E0; /* Off-white on hover */
-            color: #183B4E; /* Dark text/icon */
+            background-color: var(--color-light-cream); /* Light Cream on hover */
+            color: var(--color-dark-blue); /* Dark text/icon */
             transform: translateY(-3px); /* Slight lift */
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
         }
@@ -262,27 +270,11 @@
 
         /* Feedback Modal Styles */
         .feedback-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-color: rgba(0, 0, 0, 0.8); /* Even darker overlay */
-            z-index: 40;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .feedback-modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
         }
         .feedback-modal-content {
-            background-color: #27548A; /* Medium Blue for modal background */
-            color: #F3F3E0; /* Off-white text */
+            background-color: var(--color-medium-blue); /* Medium Blue for modal background */
+            color: var(--color-light-cream); /* Light Cream text */
             padding: 2rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
@@ -298,37 +290,37 @@
             opacity: 1;
         }
         .feedback-modal-content h2 {
-            color: #DDA853; /* Golden heading */
+            color: var(--color-accent-yellow); /* Accent Yellow heading */
         }
         .feedback-modal-content label {
-            color: #F3F3E0; /* Off-white labels */
+            color: var(--color-light-cream); /* Light Cream labels */
         }
         .feedback-modal-content input,
         .feedback-modal-content textarea {
-            background-color: #183B4E; /* Dark Blue/Teal for input fields */
-            border-color: #27548A; /* Medium Blue border */
-            color: #F3F3E0; /* Light text in inputs */
+            background-color: var(--color-dark-blue); /* Darker Blue for input fields */
+            border-color: var(--color-medium-blue); /* Medium Blue border */
+            color: var(--color-light-cream); /* Light Cream text in inputs */
         }
         .feedback-modal-content input:focus,
         .feedback-modal-content textarea:focus {
-            border-color: #DDA853; /* Golden focus ring */
-            box-shadow: 0 0 0 2px rgba(221, 168, 83, 0.5);
+            border-color: var(--color-accent-yellow); /* Accent Yellow focus ring */
+            box-shadow: 0 0 0 2px rgba(250, 218, 122, 0.5);
         }
         .feedback-modal-content button[type="submit"] {
-            background-color: #DDA853; /* Golden submit button */
-            color: #183B4E; /* Dark text */
+            background-color: var(--color-accent-yellow); /* Accent Yellow submit button */
+            color: var(--color-dark-blue); /* Dark text */
         }
         .feedback-modal-content button[type="submit"]:hover {
-            background-color: #F3F3E0; /* Off-white on hover */
-            color: #183B4E; /* Dark text */
+            background-color: var(--color-light-cream); /* Light Cream on hover */
+            color: var(--color-dark-blue); /* Dark text */
         }
         .feedback-modal-content .close-btn {
-            background-color: #183B4E; /* Dark Blue/Teal for close button */
-            color: #F3F3E0;
+            background-color: var(--color-dark-blue); /* Darker Blue for close button */
+            color: var(--color-light-cream);
         }
         .feedback-modal-content .close-btn:hover {
-            background-color: #DDA853; /* Golden on hover */
-            color: #183B4E;
+            background-color: var(--color-accent-yellow); /* Accent Yellow on hover */
+            color: var(--color-dark-blue);
         }
     </style>
 </head>
@@ -350,7 +342,7 @@
         <nav class="hidden md:flex space-x-6">
             <a href="index.html" id="nav-digital-specs" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
             <a href="index.html" id="nav-offline-specs" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
-            <a href="#" class="hover:text-blue-700 font-medium transition-colors">About Us</a>
+            <a href="about.html" class="hover:text-blue-700 font-medium transition-colors">About Us</a>
         </nav>
 
         <!-- Hamburger Menu Icon for Mobile (will be handled by JS) -->
@@ -425,7 +417,7 @@
                 <p class="text-gray-500 text-center col-span-full py-8">Loading specifications...</p>
             </div>
             <div id="view-all-button-container" class="text-center mt-8 hidden">
-                <button id="view-all-specs-btn" class="bg-DDA853 text-183B4E py-3 px-6 rounded-lg font-semibold hover:bg-F3F3E0 transition-colors focus:outline-none focus:ring-2 focus:ring-DDA853">
+                <button id="view-all-specs-btn" class="py-3 px-6 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-DDA853">
                     View All Specs
                 </button>
             </div>
@@ -438,7 +430,7 @@
         <p>&copy; 2025 AssetSOS. All rights reserved.</p>
         <p class="mt-2">Built with <span class="text-blue-400">AI Collaboration</span> (Gemini).</p>
         <p class="mt-2">
-            <a href="#" class="hover:underline">About Us</a> |
+            <a href="about.html" class="hover:underline">About Us</a> |
             <a href="#" class="hover:underline">Privacy Policy</a> |
             <a href="#" class="hover:underline">Terms of Service</a>
         </p>

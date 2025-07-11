@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asset Details - AssetSOS</title>
+    <title>About Us - AssetSOS</title>
     <!-- Link to Tailwind CSS for basic styling and responsiveness -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /*
-            Specific Asset Detail Page CSS Styling for AssetSOS - Dark Mode Theme
-            This CSS complements the Tailwind CSS framework.
-            It provides custom styles for elements on the detail page,
-            ensuring consistency with the homepage's dark mode theme.
+            About Us Page CSS Styling for AssetSOS - Dark Mode Theme
+            This CSS is consistent with the main site's dark mode theme.
         */
 
         /* Color Palette Variables (Consistent with homepage) */
@@ -131,6 +129,71 @@
             border-width: 0;
         }
 
+        /* About Page Specifics */
+        .about-content {
+            background-color: var(--color-medium-blue);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: var(--color-light-cream);
+        }
+        .about-content h1 {
+            color: var(--color-accent-yellow);
+        }
+        .about-content h2 {
+            color: var(--color-accent-yellow);
+            border-bottom: 1px solid rgba(245, 240, 205, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .about-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .about-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .about-content ul li {
+            margin-bottom: 0.5rem;
+        }
+        .about-content a {
+            color: var(--color-accent-yellow);
+            text-decoration: underline;
+        }
+        .about-content a:hover {
+            color: var(--color-light-cream);
+        }
+
+        /* Footer Section (Consistent with index.html) */
+        footer {
+            background-color: var(--color-medium-blue);
+            color: var(--color-light-cream);
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+        }
+        footer a {
+            color: var(--color-accent-yellow);
+        }
+        footer a:hover {
+            color: var(--color-light-cream);
+        }
+
+        /* Floating Suggestion Box Button (Consistent with index.html) */
+        #suggestion-box-btn {
+            background-color: var(--color-accent-yellow);
+            color: var(--color-dark-blue);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #suggestion-box-btn:hover {
+            background-color: var(--color-light-cream);
+            color: var(--color-dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+        #suggestion-box-btn:active {
+            transform: translateY(0);
+        }
+
         /* Feedback Modal Styles (Consistent with index.html) */
         .feedback-modal-overlay {
             position: fixed;
@@ -201,96 +264,6 @@
             background-color: var(--color-accent-yellow);
             color: var(--color-dark-blue);
         }
-
-        /* Specific Detail Page Elements */
-        .back-link {
-            color: var(--color-accent-yellow); /* Accent Yellow for back link */
-            transition: color 0.2s ease;
-        }
-        .back-link:hover {
-            color: var(--color-light-cream); /* Light Cream on hover */
-        }
-
-        #asset-detail-content {
-            background-color: var(--color-medium-blue); /* Medium Blue for detail content area */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow */
-            color: var(--color-light-cream); /* Light Cream text */
-        }
-        #asset-detail-content h1 {
-            color: var(--color-accent-yellow); /* Accent Yellow for main asset title */
-        }
-        #asset-detail-content p.text-lg.text-gray-600 { /* Subtitle like "Image asset" */
-            color: rgba(245, 240, 205, 0.8); /* Slightly muted light cream */
-        }
-        #asset-detail-content .info-box { /* Info boxes */
-            background-color: var(--color-dark-blue); /* Darker Blue for info boxes */
-            color: var(--color-light-cream); /* Light Cream text */
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
-        }
-        #asset-detail-content .info-box h3 {
-            color: var(--color-accent-yellow); /* Accent Yellow for info box headings */
-        }
-        #asset-detail-content .info-box p {
-            color: var(--color-light-cream); /* Light Cream for info box text */
-        }
-        #asset-detail-content .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-        #asset-detail-content .info-table th,
-        #asset-detail-content .info-table td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(245, 240, 205, 0.1); /* Subtle border */
-        }
-        #asset-detail-content .info-table th {
-            color: var(--color-accent-yellow);
-            font-weight: 600;
-            background-color: rgba(0, 0, 0, 0.1); /* Slightly darker header row */
-        }
-        #asset-detail-content .info-table td {
-            color: var(--color-light-cream);
-        }
-        #asset-detail-content .info-table tr:last-child td {
-            border-bottom: none;
-        }
-        #asset-detail-content ul {
-            list-style-type: disc; /* Bullet points */
-            padding-left: 1.5rem;
-            color: var(--color-light-cream);
-            opacity: 0.9;
-        }
-        #asset-detail-content ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        #asset-detail-content p.text-gray-500 { /* Last updated text */
-            color: rgba(245, 240, 205, 0.6);
-        }
-        #asset-detail-content a.text-blue-600 { /* Source URL link */
-            color: var(--color-accent-yellow); /* Accent Yellow link */
-        }
-        #asset-detail-content a.text-blue-600:hover {
-            color: var(--color-light-cream); /* Light Cream on hover */
-        }
-
-        /* Floating Suggestion Box Button (Consistent with index.html) */
-        #suggestion-box-btn {
-            background-color: var(--color-accent-yellow); /* Accent Yellow button */
-            color: var(--color-dark-blue); /* Dark text/icon */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Deeper shadow */
-            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        #suggestion-box-btn:hover {
-            background-color: var(--color-light-cream); /* Light Cream on hover */
-            color: var(--color-dark-blue); /* Dark text/icon */
-            transform: translateY(-3px); /* Slight lift */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-        }
-        #suggestion-box-btn:active {
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -306,8 +279,8 @@
         </div>
 
         <nav class="hidden md:flex space-x-6">
-            <a href="index.html" id="nav-digital-specs" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
-            <a href="index.html" id="nav-offline-specs" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
+            <a href="index.html" class="hover:text-blue-700 font-medium transition-colors">Digital Specs</a>
+            <a href="index.html" class="hover:text-blue-700 font-medium transition-colors">Offline Specs</a>
             <a href="about.html" class="hover:text-blue-700 font-medium transition-colors">About Us</a>
         </nav>
 
@@ -316,18 +289,30 @@
         </button>
     </header>
 
-    <!-- Main Content Area for Asset Details -->
+    <!-- Main Content Area for About Us -->
     <main class="flex-grow container mx-auto px-4 py-8 md:py-12">
-        <div class="mb-8">
-            <a href="index.html" class="back-link flex items-center">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Back to all Specs
-            </a>
-        </div>
+        <section class="about-content p-6 rounded-xl shadow-md">
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-6">About AssetSOS</h1>
 
-        <section id="asset-detail-content" class="p-6 rounded-xl shadow-md">
-            <!-- Asset details will be dynamically loaded here by JavaScript -->
-            <p class="text-gray-600 text-center py-8">Loading asset details...</p>
+            <p>Welcome to **AssetSOS**, your go-to resource for accurate and up-to-date marketing asset specifications. In the fast-paced world of digital and print media, getting your creative assets right the first time is crucial. We understand the challenges faced by marketers, designers, and content creators in keeping up with ever-changing platform requirements.</p>
+
+            <p>Our mission is to simplify this process by providing a comprehensive, easy-to-navigate guide to all the dimensions, aspect ratios, file formats, and character limits you need. Whether you're designing for a Facebook ad, an Instagram story, a YouTube video, or a traditional print billboard, AssetSOS has you covered.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-4">Why AssetSOS?</h2>
+            <ul>
+                <li>**Accuracy:** We strive to provide the most current and verified specifications.</li>
+                <li>**Efficiency:** Save time and reduce revisions by having all information in one place.</li>
+                <li>**Clarity:** Complex technical details are presented in an easy-to-understand format.</li>
+                <li>**Accessibility:** Designed for quick search and navigation on any device.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-4">Our Commitment</h2>
+            <p>AssetSOS is built with a commitment to continuous improvement. We regularly update our database to reflect the latest changes from major platforms. We also value your input! Use our "Suggestion Box" to recommend new specs or provide feedback.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-4">Built with AI Collaboration</h2>
+            <p>This project was developed with the assistance of an AI, demonstrating the power of collaborative intelligence in creating useful tools. We believe in leveraging technology to make creative workflows smoother and more effective.</p>
+
+            <p class="mt-8 text-sm opacity-80">For any inquiries, please use the feedback form or contact us at <a href="mailto:info@assetsos.com">info@assetsos.com</a>.</p>
         </section>
     </main>
 
@@ -381,6 +366,6 @@
         </div>
     </div>
 
-    <script src="detail_script.js"></script> <!-- Link to the JavaScript file for detail page -->
+    <script src="about_script.js"></script> <!-- Link to the new JavaScript file for about page -->
 </body>
 </html>
